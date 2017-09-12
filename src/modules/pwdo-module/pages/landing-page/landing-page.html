@@ -1,0 +1,30 @@
+<dom-module id="landing-page">
+  <template>
+    <link rel="stylesheet" href="./landing-page.scss">
+
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+
+    <template is="dom-if" if="[[!user]]">
+      <section class="login-section">
+        <paper-button raised on-tap="login">Login</paper-button>
+      </section>
+    </template>
+
+    <template is="dom-if" if="[[user]]">
+      <section class="login-section">
+        <h1>Hi [[user.displayName]]</h1>
+        <p>
+          Scan Eventbrite QR Code to register
+        </p>
+        <video id="video" autoplay></video><br/>
+        <div class="snap-area">
+          <paper-button id="snap" raised on-tap="scanned">Scan</paper-button>
+          <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
+        </div>
+        <paper-button raised on-tap="logout">Logout</paper-button>
+
+        <canvas id="canvas"></canvas>
+      </section>
+    </template>
+  </template>
+</dom-module>

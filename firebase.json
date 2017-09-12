@@ -3,6 +3,16 @@
     "rules": "database.rules.json"
   },
   "hosting": {
+    "rewrites": [
+      {
+        "source": "/scan",
+        "function": "scan"
+      },
+      {
+        "source": "/",
+        "destination": "/index.html"
+      }
+    ],
     "headers": [
       {
         "source": "**/*.@(jpg|jpeg|gif|png)",
@@ -77,20 +87,6 @@
         ]
       }
     ],
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "/index.html"
-      },
-      {
-        "source": "style-guide",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/auth",
-        "destination": "/index.html"
-      }
-    ],
-    "public": "dist/public"
+    "public": "./dist/public"
   }
 }

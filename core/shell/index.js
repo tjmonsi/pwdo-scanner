@@ -7,8 +7,13 @@ import routing from '../../src/routing.js'
 import httpCodes from '../../src/http-codes.js'
 import partials from '../../src/partials.js'
 import auth from '../../src/authentication/index.js'
+import firebaseConfig from '../../src/firebase'
 
 const messages = []
+
+if (firebaseConfig[0]) {
+  firebase.initializeApp(firebaseConfig[0])
+}
 
 class AppShell extends QueryParamsMixin(LocationMixin(Polymer.Element)) {
   static get is () { return 'app-shell' }
