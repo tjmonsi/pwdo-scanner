@@ -2,7 +2,7 @@
   <template>
     <link rel="stylesheet" href="./landing-page.scss">
 
-    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
 
     <template is="dom-if" if="[[!user]]">
       <section class="login-section">
@@ -21,6 +21,12 @@
           <paper-button id="snap" raised on-tap="scanned">Scan</paper-button>
           <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
         </div>
+        <div class="snap-area">
+            <a class="snap-anchor" href="/see-scanned">
+            <paper-button raised>See All Scanned</paper-button>
+            </a>
+            <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
+          </div>
         <paper-button raised on-tap="logout">Logout</paper-button>
 
         <canvas id="canvas"></canvas>

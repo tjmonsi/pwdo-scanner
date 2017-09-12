@@ -29,6 +29,7 @@
   },
   "fragments": {
     "landing-page": "modules/pwdo-module/pages/landing-page/landing-page.js",
+    "scanned-page": "modules/pwdo-module/pages/scanned-page/scanned-page.js",
     "example-not-found-page": "modules/example-module/pages/example-not-found-page/example-not-found-page.js",
     "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page/example-not-authorized-page.js",
     "example-authorized-page": "modules/example-module/pages/example-authorized-page/example-authorized-page.js",
@@ -37,7 +38,8 @@
     "example-drawer": "modules/example-module/components/example-drawer/example-drawer.js"
   },
   "routing": {
-    "/": "landing-page"
+    "/": "landing-page",
+    "/see-scanned": "scanned-page"
   },
   "httpCodes": {
     "not-found": "example-not-found-page",
@@ -55,6 +57,12 @@
     "rewrites": [
       {
         "source": "/scan", "function": "scan"
+      },
+      {
+        "source": "/validate", "function": "validate"
+      },
+      {
+        "source": "/get-scanned", "function": "getScanned"
       }
     ],
     "headers": [

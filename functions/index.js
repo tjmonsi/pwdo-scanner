@@ -18,8 +18,6 @@ exports.scan = functions.https.onRequest((req, res) => {
     })
   }
 
-
-
   fetch(`https://www.eventbriteapi.com/v3/orders/${req.body.id.substring(0, 9)}/?token=${eventbrite.key}`).then(result => {
     return result.json()
   })
@@ -36,6 +34,47 @@ exports.scan = functions.https.onRequest((req, res) => {
   })
 })
 
+// NEED TO ADD VALIDATION OF CODE HERE
+exports.validate = functions.https.onRequest((req, res) => {
+  if (!req.body.uid && !req.body.token) {
+    return res.status(404).json({
+      success: false,
+      message: 'No auth or uid found'
+    })
+  }
+
+  if (!req.body.validationCode) {
+    return res.status(404).json({
+      success: false,
+      message: 'No validationcode found'
+    })
+  }
+
+  res.status(200).json({
+    success: true
+  })
+})
+
+// GET ALL SCANNED
+exports.getScanned = functions.https.onRequest((req, res) => {
+  if (!req.body.uid && !req.body.token) {
+    return res.status(404).json({
+      success: false,
+      message: 'No auth or uid found'
+    })
+  }
+
+  if (!req.body.validationCode) {
+    return res.status(404).json({
+      success: false,
+      message: 'No validationcode found'
+    })
+  }
+
+  res.status(200).json({
+    success: true
+  })
+})
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

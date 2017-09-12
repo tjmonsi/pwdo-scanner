@@ -9,7 +9,19 @@
         "function": "scan"
       },
       {
+        "source": "/validate",
+        "function": "validate"
+      },
+      {
+        "source": "/get-scanned",
+        "function": "getScanned"
+      },
+      {
         "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/see-scanned",
         "destination": "/index.html"
       }
     ],

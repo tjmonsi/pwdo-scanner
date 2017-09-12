@@ -1,0 +1,29 @@
+<dom-module id="scanned-page">
+  <template>
+    <link rel="stylesheet" href="./scanned-page.scss">
+
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
+
+    <template is="dom-if" if="[[!user]]">
+      <section class="login-section">
+        <paper-button raised on-tap="login">Login</paper-button>
+      </section>
+    </template>
+
+    <template is="dom-repeat" items="[[scanned]]">
+      [[item.firstName]] [[item.lastName]] - [[item.email]] <br/>
+    </template>
+
+    <template is="dom-if" if="[[user]]">
+        <div class="snap-area">
+          <paper-button id="snap" raised on-tap="print">Print</paper-button>
+        </div>
+      <div class="snap-area">
+          <a class="snap-anchor" href="/">
+            <paper-button raised>Scan More</paper-button>
+          </a>
+        </div>
+      <paper-button raised on-tap="logout">Logout</paper-button>
+    </template>
+  </template>
+</dom-module>
