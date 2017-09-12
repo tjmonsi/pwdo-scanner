@@ -1,0 +1,127 @@
+{
+  "app": {
+    "title": "Pwdo Scanner",
+    "shortTitle": "Pwdo Scanner",
+    "description": "An awesome web app project created from Polymer, bundled in Webpack, built from Gulp, and hosted in Firebase",
+    "twitter": "",
+    "image": ""
+  },
+  "build": {
+    "name": "dev",
+    "baseHref": "/",
+    "analytics": "",
+    "firebaseVersion": "4.2.0",
+    "database": "dev",
+    "sentryUrl": "",
+    "firebaseConfig": []
+  },
+  "theme": {
+    "src": "modules/example-module"
+  },
+  "fragments": {
+    "example-landing-page": "modules/example-module/pages/example-landing-page/example-landing-page.js",
+    "example-not-found-page": "modules/example-module/pages/example-not-found-page/example-not-found-page.js",
+    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page/example-not-authorized-page.js",
+    "example-authorized-page": "modules/example-module/pages/example-authorized-page/example-authorized-page.js",
+    "example-style-guide-page": "modules/example-module/pages/example-style-guide-page/example-style-guide-page.js",
+    "example-header": "modules/example-module/components/example-header/example-header.js",
+    "example-drawer": "modules/example-module/components/example-drawer/example-drawer.js"
+  },
+  "routing": {
+    "/": "example-landing-page",
+    "style-guide": "example-style-guide-page",
+    "/auth": {
+      "name": "example-authorized-page",
+      "auth": "exampleAuthentication"
+    }
+  },
+  "httpCodes": {
+    "not-found": "example-not-found-page",
+    "not-authorized": "example-not-authorized-page"
+  },
+  "partials": {
+    "header": "example-header",
+    "drawer": "example-drawer"
+  },
+  "serviceWorker": {
+    "globIgnores": [],
+    "runtimeCaching": [],
+    "globPatterns": []
+  },
+  "hosting": {
+    "headers": [
+      {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=7200"
+          }
+        ]
+      },
+      {
+        "source" : "404.html",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=300"
+          }
+        ]
+      },
+      {
+        "source": "service-worker.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "service-worker-core/*.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "service-worker-src/*js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "sw.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "workbox-routing.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "workbox-sw.*.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}

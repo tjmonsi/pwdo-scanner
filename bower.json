@@ -1,0 +1,30 @@
+{
+  "name": "pwdo-scanner",
+  "description": "An awesome web app project created from Polymer, bundled in Webpack, built from Gulp, and hosted in Firebase",
+  "main": "dist/public/index.html",
+  "authors": [
+    "Toni-Jan Keith Monserrat"
+  ],
+  "license": "MIT",
+  
+  "homepage": "https://github.com.com/tjmonsi/pwdo-scanner",
+  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.1",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.1",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.1"
+  },
+  "devDependencies": {
+    "web-component-tester": "^6.0.0"
+  }
+}
