@@ -12,7 +12,7 @@
     "analytics": "",
     "firebaseVersion": "4.2.0",
     "database": "dev",
-    "sentryUrl": "",
+    "sentryUrl": "https://b51d082c97ca42318c0e23746e210526@sentry.io/216293",
     "firebaseConfig": [
       {
         "apiKey": "AIzaSyCA8xc5Kak0wlH3IXVSlL0kMy7jpmJeCGQ",

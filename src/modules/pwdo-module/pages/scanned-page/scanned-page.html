@@ -10,20 +10,69 @@
       </section>
     </template>
 
-    <template is="dom-repeat" items="[[scanned]]">
-      [[item.firstName]] [[item.lastName]] - [[item.email]] <br/>
-    </template>
-
     <template is="dom-if" if="[[user]]">
-        <div class="snap-area">
-          <paper-button id="snap" raised on-tap="print">Print</paper-button>
-        </div>
-      <div class="snap-area">
-          <a class="snap-anchor" href="/">
-            <paper-button raised>Scan More</paper-button>
-          </a>
-        </div>
-      <paper-button raised on-tap="logout">Logout</paper-button>
+      <firebase-document path="/dev/user/list/sponsor/{{user.uid}}" data="{{sponsorId}}"></firebase-document>
+
+      <template is="dom-if" if="[[!sponsorId.value]]">
+        <section class="login-section">
+          <h1>Hi [[user.displayName]]</h1>
+          <p>Please put the validation code given to register as your company</p>
+          <paper-input id="validate" label="Validation Code"></paper-input><br/>
+          <paper-button on-tap="validate">Validate</paper-button>
+        </section>
+      </template>
+
+      <template is="dom-if" if="[[sponsorId.value]]">
+        <firebase-document path="/dev/sponsor/data/{{sponsorId.value}}/name" data="{{sponsor}}"></firebase-document>
+
+
+        <section class="login-section">
+          <h1>Hi [[user.displayName]]</h1>
+          <h2>Company: [[sponsor]]</h2>
+          <table border="1" width="100%">
+            <thead>
+              <tr>
+                <th>
+                  First Name
+                </th>
+                <th>
+                  Last Name
+                </th>
+                <th>
+                  Email
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template is="dom-repeat" items="[[scanned]]">
+                <tr>
+                  <td>
+                    [[item.firstName]]
+                  </td>
+                  <td>
+                    [[item.lastName]]
+                  </td>
+                  <td>
+                    [[item.email]]
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+          <br/>
+          <br/>
+          <div class="snap-area">
+              <paper-button id="snap" raised on-tap="print">Print</paper-button>
+            </div>
+            <div class="snap-area">
+              <a class="snap-anchor" href="/">
+                <paper-button raised>Scan More</paper-button>
+              </a>
+            </div>
+            <paper-button raised on-tap="logout">Logout</paper-button>
+        </section>
+
+      </template>
     </template>
   </template>
 </dom-module>

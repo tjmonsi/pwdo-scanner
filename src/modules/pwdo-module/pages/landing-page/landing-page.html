@@ -11,26 +11,43 @@
     </template>
 
     <template is="dom-if" if="[[user]]">
-      <section class="login-section">
-        <h1>Hi [[user.displayName]]</h1>
-        <p>
-          Scan Eventbrite QR Code to register
-        </p>
-        <video id="video" autoplay></video><br/>
-        <div class="snap-area">
-          <paper-button id="snap" raised on-tap="scanned">Scan</paper-button>
-          <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
-        </div>
-        <div class="snap-area">
-            <a class="snap-anchor" href="/see-scanned">
-            <paper-button raised>See All Scanned</paper-button>
-            </a>
+      <firebase-document path="/dev/user/list/sponsor/{{user.uid}}" data="{{sponsorId}}"></firebase-document>
+
+      <template is="dom-if" if="[[!sponsorId.value]]">
+        <section class="login-section">
+          <h1>Hi [[user.displayName]]</h1>
+          <p>Please put the validation code given to register as your company</p>
+          <paper-input id="validate" label="Validation Code"></paper-input><br/>
+          <paper-button on-tap="validate">Validate</paper-button>
+        </section>
+      </template>
+
+      <template is="dom-if" if="[[sponsorId.value]]">
+        <firebase-document path="/dev/sponsor/data/{{sponsorId.value}}/name" data="{{sponsor}}"></firebase-document>
+
+        <section class="login-section">
+          <h1>Hi [[user.displayName]]</h1>
+          <h2>Company: [[sponsor]]</h2>
+          <p>
+            Scan Eventbrite QR Code to register ticket
+          </p>
+          <video id="video" autoplay></video><br/>
+          <div class="snap-area">
+            <paper-button id="snap" raised on-tap="scanned">Scan</paper-button>
             <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
           </div>
-        <paper-button raised on-tap="logout">Logout</paper-button>
+          <div class="snap-area">
+              <a class="snap-anchor" href="/see-scanned">
+              <paper-button raised>See All Scanned</paper-button>
+              </a>
+              <!--<paper-button id="snap" raised on-tap="changeCamera">Change Camera</paper-button> -->
+            </div>
+          <paper-button raised on-tap="logout">Logout</paper-button>
 
-        <canvas id="canvas"></canvas>
-      </section>
+          <canvas id="canvas"></canvas>
+        </section>
+      </template>
+
     </template>
   </template>
 </dom-module>

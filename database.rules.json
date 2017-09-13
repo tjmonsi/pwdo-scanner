@@ -1,8 +1,29 @@
 {
   "rules": {
+    ".write": false,
     "dev": {
-      ".read": true,
-      ".write": "auth != null"
+      "sponsor": {
+        "data": {
+          "$sponsorId": {
+            "name": {
+              ".read": true
+            }
+          },
+          ".indexOn": ["validation"]
+        }
+      },
+      "sponsorscan": {
+        "data": {
+          ".indexOn": ["email"]
+        }
+      },
+      "user": {
+        "list": {
+          "sponsor": {
+            ".read": true
+          }
+        }
+      }
     }
   }
 }
