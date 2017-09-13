@@ -8,8 +8,6 @@ import QrCode from 'qrcode-reader'
 const qr = new QrCode()
 const eventId = 30021508139
 
-qr.callback
-
 class LandingPage extends Polymer.GestureEventListeners(Polymer.Element) {
   static get is() { return 'landing-page' }
 

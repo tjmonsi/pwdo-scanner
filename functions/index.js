@@ -34,6 +34,8 @@ exports.scan = functions.https.onRequest((req, res) => {
 
   var profile = null
   var key = null
+  var sponsor = null
+  const updates = {}
   const promises = []
   const ref = admin
     .database()
@@ -53,20 +55,11 @@ exports.scan = functions.https.onRequest((req, res) => {
       .once('value')
   )
 
-  promises.push(
-    ref
-      .orderByChild('email')
-      .limitToFirst(1)
-      .equalTo(json.profile.email)
-      .once('value')
-  )
-
   Promise.all(promises)
     .then(results => {
       const json = results[0]
       const sponsorSnapshot = results[1]
-      const scanSnapshot = results[2]
-      const updates = {}
+      
       if (!sponsorSnapshot.exists()) {
         return Promise.reject({
           status_code: 404,
@@ -83,14 +76,27 @@ exports.scan = functions.https.onRequest((req, res) => {
         return Promise.reject(json)
       }
 
-      const sponsor = sponsorSnapshot.val()
+      sponsor = sponsorSnapshot.val()
+      
+      return Promise.all([
+        ref
+          .orderByChild('email')
+          .limitToFirst(1)
+          .equalTo(json.profile.email)
+          .once('value'),
+        Promise.resolve(json)
+      ])
+    })
+    .then(results => {
+      const scanSnapshot = results[0]
+      const json = results[1]
       scanSnapshot.forEach(child => {
         if (child.exists()) {
           profile = child.val()
           key = child.key
         }
       })
-
+      
       if (!key) {
         profile = {
           email: json.profile.email,
